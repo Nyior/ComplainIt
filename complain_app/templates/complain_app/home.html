@@ -1,0 +1,256 @@
+
+{% extends 'complain_app\base.html' %}
+{% load static %}
+
+
+
+{% block header %}
+
+    <div id="intro" class="view">
+
+        <div class="mask ">
+
+            <div class="container d-flex align-items-center justify-content-start  h-100">
+
+                <div class="row ">
+
+                    <div class="col-md-10">
+
+                        <!-- Heading -->
+                        <h1 class="  julius-sans pt-5 mb-2 text-danger font-weight-bold ">COMPLAINIT comes with several out of the box tools to help
+                            you report and track a crime. </h1>
+
+                        <!-- Divider -->
+                        <hr class="hr-dark">
+
+                        <!-- Description -->
+                        <h4 class="t " id="typed">Check out our blog <a href="#">here</a> for latest news updates</h4>
+                        <div class="display-inline mt-3 m-0 p-0">
+                            <a role="button" class="btn btn-danger text-white btn-sm m-0" href="{% url 'complain-create' %}">Report Crime<i class="fas fa-hammer ml-2"></i></a>
+                            <a role="button" class="btn btn-danger text-white btn-sm m-0" href="{% url 'complain-status' %}">complain status<i class="fas fa-key ml-2"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock header %} 
+    
+{% block content %}
+ <div class = "container">  
+    <div class = "row ">
+        {% for post in posts %}
+            <div class="col-md-3 mt-3  ">
+                    <div class="card">
+
+                            <!--Card image-->
+                            <div class="view">
+                                <img class="card-img-top"   src = "{{ post.image.url }}">
+                            
+                              <a href="{{ post.image.url }}">
+                                <div class="mask rgba-white-slight"></div>
+                              </a>
+                            </div>
+                      
+                            <!--Card content-->
+                            <div class="card-body danger-color ">
+                                    <div class= "">
+                                            <h6>
+                                                <a class = "article-title text-white font-weight-bold" href = "#">
+                                                    {{post.title}}
+                                                 </a>
+                                            </h6>
+                    
+                                    </div>
+                              
+                                    <div class = " border-top ">
+                                            <small class = "text-white display-inline">
+                                                    <div class = "mr-2" >
+                                                    {{post.author}}
+                                                    {{ post.date_posted|date:"F d, Y"}}
+                                                    </div>
+                    
+                                        </small>
+                                    </div>
+                            </div>
+                      
+                     </div>
+               
+            </div>
+        {% endfor %}
+    </div>
+    
+    <div class="row" id="our-blog">
+
+        {% if is_paginated %}
+            <div class="col-md-12">
+            
+                {% if page_obj.has_previous %}
+                    <a class = "btn btn-sm btn-outline-danger text-body mb-4  m-0 p-1 mt-2" href="?page=1">first</a>
+                    <a class = "btn btn-sm btn-outline-danger text-body mb-4 m-0 p-1 mt-2" href="?page={{ page_obj.previous_page_number }}">&laquo;</a>
+                {% endif %}
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <a class = "btn btn-sm btn-danger text-white mb-4 m-0 p-1 mt-2" href="?page={{ num }}">{{ num }}</a>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                        <a class = "btn btn-sm btn-outline-danger text-body  mb-4  m-0 p-1 mt-2" href="?page={{ num }}">{{ num }}</a>
+                    {% endif %}
+                {% endfor %}
+        
+                {% if page_obj.has_next %}
+                    <a class = "btn btn-sm btn-outline-danger mb-4  m-0 p-1 mt-2" href="?page={{ page_obj.next_page_number}}">&laquo;</a>
+                    <a class = "btn btn-sm btn-outline-danger mb-4  m-0 p-1 mt-2" href="?page={{ page_obj.paginator.num_pages }}">last</a>
+                {% endif %}
+                
+            </div>
+        {% endif %}
+        
+    </div>  
+      
+   
+    <div class="row mt-3 mb-5 ">
+        <div class="col-md-12  ">
+                <div class="card card-image " >
+
+                    <!-- Content -->
+                    <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+                      <div>
+                        <h3 class="text-danger mb-3"><i class="fas fa-biohazard m-0"></i> Security Alert</h3>
+                        <h3 class="card-title pt-2"><strong>{{minedata.title}}.</strong></h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
+                          optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
+                          Odit sed qui, dolorum!.</p>
+                          <a class="btn btn-sm btn-danger text-white m-0 "><i class="fas fa-clone left"></i>Read More</a>
+                          
+                      </div>
+                    </div>
+                  
+                  </div>
+                    <!-- Content 
+                <div id = "Security" class="view">
+                    
+                        <div class="text-white rgba-black-strong py-5 ">
+                            <div class="ml-5">
+                                <h5 class="text-danger"><i class="fas fa-biohazard m-0"></i> Security Alert</h5>
+                                
+                                <p>{{minedata.title}}.</p>
+                                <a class="btn btn-sm btn-outline-danger text-white m-0 ">Read More<i class="fas fa-info ml-1"></i> </a>
+                            </div>
+                        </div>
+                    
+                </div> -->
+        </div>
+    </div>
+   
+
+</div> 
+{% endblock content %}
+
+{% block footer %}
+    <!-- Footer -->
+<footer class="page-footer text-body border-top  pt-4 ">
+
+    <!-- Footer Elements -->
+    <div class="container ">
+
+        <div class = "row ml-1">
+        <!-- Social buttons -->
+            <ul class="list-unstyled list-inline text-center socialbuttons ">
+                <li class="list-inline-item">
+                <a class="btn-floating btn-fb mx-1">
+                    <i class="fab fa-facebook-f"> </i>
+                </a>
+                </li>
+                <li class="list-inline-item">
+                <a class="btn-floating btn-tw mx-1">
+                    <i class="fab fa-twitter"> </i>
+                </a>
+                </li>
+                <li class="list-inline-item">
+                <a class="btn-floating btn-gplus mx-1">
+                    <i class="fab fa-instagram"> </i>
+                </a>
+                </li>
+                
+            </ul>
+        <!-- Social buttons -->
+        </div>
+        
+
+        <div class="row ml-1">
+
+            <!-- Grid column -->
+            <div class="col-md-6 mt-md-0  p-0 mt-3 ">
+    
+                <!-- Content -->
+                <h5 class="font-weight-bold text-danger">Contact Us</h5>
+                <p class="mt-2"> Ajisaq Limited</p>
+                <p> Opposite Shagari Royal Guest House</p>
+                <p> Yola, Adamawa State.</p>
+        
+            </div>
+            <!-- Grid column -->
+    
+         
+    
+            <!-- Grid column -->
+            <div class="col-md-3 mb-md-0 m-0 mb-3">
+    
+            <!-- Links -->
+                <h5 class="font-weight-bold text-danger">About</h5>
+                <p class="mt-2">
+                     <a href="#!">Our Team</a>
+                </p>
+                <p>
+                    <a href="#!">Privacy</a>
+                </p>
+                <p>
+                    <a href="#!">Terms of Use</a>
+                </p>
+            
+    
+            </div>
+            <!-- Grid column -->
+    
+            <!-- Grid column -->
+            <div class="col-md-3 mb-md-0 mb-3">
+    
+            <!-- Links -->
+                <h5 class="font-weight-bold text-danger">How it Works</h5>
+                <p class="mt-2">
+                    <a href="#!">Reporting a Crime</a>
+                </p>
+                <p>
+                    <a href="#!">Tracking a crime Reported</a>
+                </p>
+                <p>
+                    <a href="#!">Agency Login</a>
+                </p>
+                <p>
+                        <a href="#!">Our blog</a>
+                </p>
+            
+            </div>
+            <!-- Grid column -->
+    
+        </div>
+        <!-- Grid row -->
+    
+        </div>
+    <!-- Footer Elements -->
+  
+    <!-- Copyright -->
+    <div class="footer-copyright text-center  black-text bg-white border-top py-3">© 2019 Copyright:
+      <a href="https://ajisaq.com"> ajisaq.com</a>
+    </div>
+    <!-- Copyright -->
+  
+  </footer>
+  <!-- Footer -->
+
+{% endblock footer %}

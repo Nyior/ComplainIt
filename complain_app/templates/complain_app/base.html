@@ -1,0 +1,213 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link rel = "stylesheet" type = "text/css" href = "{% static 'complain_app/bootstrap.min.css' %}"> <!--offline-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link rel = "stylesheet" type = "text/css" href = "{% static 'complain_app/mdb.min.css' %}">    <!-- offline -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.1/css/mdb.min.css" rel="stylesheet">
+    <link rel = "stylesheet" type = "text/css" href = "{% static 'complain_app/style.css' %}">
+
+    <title>Complainit</title>
+
+</head>
+
+<body onload="">
+    <header>
+        {% block nav %}
+            <nav class="navbar navbar-expand-lg fixed-top p-1 m-0 border-bottom scrolling-navbar z-depth-half ">
+
+                <div class="container">
+
+                    <!-- Navbar brand -->
+                    {% if user.is_authenticated %}
+
+                    {% else %}
+                        <a class="navbar-brand text-danger font-weight-bold" href="{% url 'home' %}">Complainit</a>
+                    {% endif %}
+                    <!-- Collapse button -->
+                    <button class="red-text navbar-toggler" type="button" data-toggle="collapse" data-target="#landingPage"
+                            aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <!-- Collapsible content -->
+                    <div class="white-text collapse navbar-collapse" id="landingPage">
+
+                        <!-- Links -->
+                        <!-- Links -->
+                        
+                            {% if user.is_authenticated %}
+                                <ul class="navbar-nav mr-auto smooth-scroll">
+                                    <li class="nav-item  ">
+                                        <a class="nav-link active" href="#">Home</a>
+                                    </li>
+
+                                        <a class="nav-link " href="#">Profile</a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link " href="#">Logout</a>
+                                    </li>
+                                </ul>
+                            {% else %}
+                                <ul class="navbar-nav mr-auto smooth-scroll">
+
+                                    
+                                </ul>
+
+                                <ul class="navbar-nav nav-flex-icons ml-auto">
+                                        <li class="nav-item ">
+                                                <a class="nav-link font-weight-bold active " href="{% url 'home' %}">Home</a>
+                                        </li>
+                
+                                            <li class="nav-item">
+                                                <a class="nav-link font-weight-bold " href="#">About</a>
+                                            </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link font-weight-bold text-danger" href="{% url 'complain-create' %}">Report Crime</a>
+                                    </li>
+        
+                                    <li class="nav-item">
+                                        <a class="nav-link text-danger font-weight-bold " href="{% url 'agency-login' %}">Agency Login</a>
+                                    </li>
+                                </ul>
+                                
+                            {% endif %}
+
+                    </div>
+                    <!-- Collapsible content -->
+
+                </div>
+
+            </nav>
+        {% endblock nav %}
+
+        <!--Mask-->
+        {% block header %}
+
+        {% endblock header %}
+        <!--/.Mask-->
+        </div
+    </header>
+
+    <main >
+        <div class = "row ">
+            <div class="col-md-3"></div>
+            <div class = "col-md-6 mt-3">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class = "alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                            {{ message }} 
+                        </div>
+                        
+                    {% endfor %}
+                {% endif %}
+
+            </div>
+            <div class="col-md-3"></div>
+
+        </div>
+        {% block content %}
+            
+        {% endblock content%}
+
+    </main>
+    <footer class=" ">
+
+      {% block footer %}
+
+      {% endblock footer %}
+      
+    </footer>
+    <!-- JQuery -->
+
+    
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'complain_app/jquery.min.js' %}"></script> <!-- offline -->
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <script type="text/javascript" src="{% static 'complain_app/popper.min.js' %}"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="{% static 'complain_app/bootstrap.min.js' %}"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.1/js/mdb.min.js"></script>
+    <script type="text/javascript" src="{% static 'complain_app/mdb.min.js' %}"></script>
+
+    <script>
+            var TxtType = function(el, toRotate, period) {
+            this.toRotate = toRotate;
+            this.el = el;
+            this.loopNum = 0;
+            this.period = parseInt(period, 10) || 2000;
+            this.txt = '';
+            this.tick();
+            this.isDeleting = false;
+        };
+        TxtType.prototype.tick = function() {
+            var i = this.loopNum % this.toRotate.length;
+            var fullTxt = this.toRotate[i];
+    
+            if (this.isDeleting) {
+            this.txt = fullTxt.substring(0, this.txt.length - 1);
+            } else {
+            this.txt = fullTxt.substring(0, this.txt.length + 1);
+            }
+    
+            this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
+    
+            var that = this;
+            var delta = 200 - Math.random() * 100;
+    
+            if (this.isDeleting) { delta /= 2; }
+    
+            if (!this.isDeleting && this.txt === fullTxt) {
+            delta = this.period;
+            this.isDeleting = true;
+            } else if (this.isDeleting && this.txt === '') {
+            this.isDeleting = false;
+            this.loopNum++;
+            delta = 500;
+            }
+    
+            setTimeout(function() {
+            that.tick();
+            }, delta);
+        };
+    
+        window.onload = function() {
+            var elements = document.getElementsByClassName('typewrite');
+            for (var i=0; i<elements.length; i++) {
+                var toRotate = elements[i].getAttribute('data-type');
+                var period = elements[i].getAttribute('data-period');
+                if (toRotate) {
+                  new TxtType(elements[i], JSON.parse(toRotate), period);
+                }
+            }
+            // INJECT CSS
+            var css = document.createElement("style");
+            css.type = "text/css";
+            css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
+            document.body.appendChild(css);
+        };
+    
+        $(function(){
+            $('.nav a').filter(function(){
+                return this.href==location.href}).parent().addClass('active').siblings().removeClass('active')
+	    })
+        $('.alert').alert()
+
+    </script>
+    
+</body>
+
+</html>

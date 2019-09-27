@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css?family=Major+Mono+Display|Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Alegreya|Crimson+Text|Ropa+Sans');
+@import url('https://fonts.googleapis.com/css?family=Radley');
+@import url('https://fonts.googleapis.com/css?family=Bubbler+One');
+@import url('https://fonts.googleapis.com/css?family=Julius+Sans+One&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+html,
+body,
+header,
+#intro {
+  height: 100%;
+  font-family: 'Montserrat', sans-serif;
+
+}
+
+.bubbler-one{
+  font-family: 'Bubbler One', sans-serif!important;
+  padding-top: 3.0rem;
+  margin-bottom: 3.00rem;
+
+}
+
+.btn{
+   
+    color: white;
+    
+}
+
+.socialbuttons{
+  color: blue !important;
+}
+
+.page-footer{
+  letter-spacing:-1;
+  font-size: 0.75rem !important;
+
+}
+
+#intro {
+  background: url("./landingpage6.jpeg")no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#complain_landing {
+  background: url("./landingpage6.jpeg")no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.card{
+  height: 100%;
+  background: url("./bg-efficient.jpeg")no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.navbar{
+
+font-size: 0.75rem !important;
+
+}
+
+.navbar a{
+  
+  display: block;
+  text-align: center;
+ }
+ .navbar a:hover{
+  background-color:antiquewhite;
+ }
+
+.navbar-brand{
+font-family: 'Major Mono Display', monospace;
+
+}
+
+.top-nav-collapse {
+background-color: white;
+}
+
+h1 {
+   letter-spacing: -1px !important;
+   font-size: 1.2em !important;
+
+}
+.julius-sans{
+  font-family: 'Julius Sans One', sans-serif;
+}
+
+ 
+h2 {
+   letter-spacing: -1px;
+   
+}
+.img{
+  border: none !important;
+}
+
+h3 {
+  letter-spacing: -1px;
+  font-family: 'Julius Sans One', sans-serif;
+  
+}
+.content-section{
+  text-align: center;
+}
+
+
+h4 {
+  letter-spacing: -1px;
+  font-size: 1.0rem;
+}
+
+h5{
+  font-size: 1rem;
+  letter-spacing: -1px;
+}
+
+h6{
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+}
+
+.navbar-brand a{
+  transition: .3s all ease;
+  -webkit-transition: .3s all ease;
+  -moz-transition: .3s all ease;
+}
+.navbar-brand a{
+  color: white !important
+}
+
+.navbar-brand a:hover{
+  text-decoration: none;
+  
+}
+
+.navbar a.active{
+  border-bottom: 3px solid #ff4444;
+
+ 
+}
+
+
+a {
+  color: black !important;
+  text-decoration: none !important;
+ 
+}
+
+ul {
+  color: black;
+}
+
+a:hover {
+  text-decoration: none !important;
+  color: none !important;
+ 
+  
+}
+
+
+@media (max-width: 768px) {
+  .navbar:not(.top-nav-collapse) {
+    background-color: black;
+  }
+}
+
+@media (min-width: 800px) and (max-width: 850px) {
+  .navbar:not(.top-nav-collapse) {
+    background-color: black;
+  }
+}

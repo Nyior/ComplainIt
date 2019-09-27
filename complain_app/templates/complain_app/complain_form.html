@@ -1,0 +1,80 @@
+{% extends 'complain_app/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block nav %}
+
+{% endblock nav %}
+
+{% block header %}
+   
+{% endblock header %} 
+
+{% block content %}
+    <div class="container">
+        <div class = "row mt-5">
+            <div class="col-md-2">
+
+            </div>
+            <div class="col-md-8 ">
+                <div class = "border z-depth-1 rounded-lg mt-5 mb-5 p-3 d-flex align-items-center justify-content-start">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <h1 class="  julius-sans font-weight-bold red-text mb-2 " > 
+                                    <a href="" class="typewrite red-text" data-period="2000" 
+                                        data-type='[ "is it arson ?", " is it murder ?", "is it theft ?", "report a crime and save a life!" ]'>
+                                            
+                                        <span class="wrap"></span>
+                                    </a>
+                                  
+                            </h1>
+                            <hr class="hr-dark">
+                            
+                            <fieldset class="form-group">
+                                {{ form|crispy }}
+                            </fieldset>
+                    
+                            <div class="form-group">
+                                <button class="btn btn-sm btn-danger m-0" type="submit">Submit</button>
+                            </div>
+                            <div class="mb-1 mt-1">
+                                <small class="text-muted">Already reported a crime? 
+                                 <a class="ml-2 text-danger font-weight-bold" href="{% url 'complain-status' %}">check status</a>
+
+                                </small>
+                            </div>
+                        </form>
+                    
+                </div>
+            </div>
+            <div class="col-md-2 ">
+                    <div class="border z-depth-1 rounded-lg mt-5 p-3">
+                            <small class="text-muted">
+                                <div class="border-bottom">
+                                        Already reported a crime?
+                                </div>
+                                
+                                <div>
+                                        <a class="ml-2 text-danger font-weight-bold" href="{% url 'complain-status' %}">check status</a>
+                                </div>
+                            </small>
+                    </div>
+            </div>
+            
+        </div>
+    </div>
+
+{% endblock content%}
+
+{% block footer %}
+    <!-- Footer -->
+    <footer class="page-footer text-body   pt-4 ">
+        <!-- Copyright -->
+        <div class="footer-copyright text-center  black-text bg-white border-top py-3">© 2019 Copyright:
+          <a href="https://ajisaq.com"> ajisaq.com</a>
+        </div>
+        <!-- Copyright -->
+      
+      </footer>
+      <!-- Footer -->
+
+{% endblock footer %}

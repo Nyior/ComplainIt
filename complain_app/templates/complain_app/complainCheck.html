@@ -1,0 +1,109 @@
+
+{% extends 'complain_app\base.html' %}
+{% load static %}
+
+{% block nav %}
+
+{% endblock nav %}
+
+{% block header %}
+
+    <div id="intro" class="view">
+
+        <div class="mask ">
+
+            <div class="container d-flex align-items-center justify-content-middle  h-100">
+
+                <div class="row ">
+
+                    <div class="col-md-12 mt-5">
+                            <div>
+
+                                    <h1 class="  julius-sans font-weight-bold red-text mb-2 " > 
+                                       <a href="" class="typewrite red-text" data-period="2000" 
+                                           data-type='[ "Logged a crime already ?", " 1. Type in your passcode",  "2. Click the submit button", "3. A result will be returned" ]'>
+                                                       
+                                           <span class="wrap"></span>
+                                       </a>
+                                             
+                                    </h1>
+                            </div>
+
+                            <div class = " z-depth-1 rounded-lg  mb-5 p-3 ">
+                                
+                               {% if not complains %}    
+                                  
+                                  <div>
+                                          <form action="" method="GET">
+                                        
+                                              <div class="md-form form-sm form-sm "> 
+                                                  <input type="password" id="form95" name="password" placeholder= "passcode here" class="required m-0 p-0 form-control form-control-sm">
+                                      
+                                              </div>
+                                                
+                                              <div class="md-form form-sm ">
+                                                  <button class="btn btn-sm btn-danger m-0" type = "submit" ripple-radius>submit<i class="far fa-paper-planeml-1"></i></button>
+                                              </div>
+                                                  
+                                          </form>
+                                          <div class="mb-1 ">
+                                              <small class="text-muted">Want to report an incident? 
+                                               <a class=" text-danger font-weight-bold" href="{% url 'complain-create' %}">report crime</a>
+                  
+                                              </small>
+                                          </div>
+                                  </div>
+
+                                {% else %}
+                              
+                                    <table class="table">
+                                            <thead>
+                                              <tr>
+                                                <th class="danger-color text-white mr-2">Crime reported</th>
+                                                <th class="danger-color text-white">Date reported</th>
+                                                <th class="danger-color text-white">Status</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              {% for complain in complains %}
+                                                <tr>
+                                                  <td> {{complain.crime_type}}</td>
+                                                  <td>{{complain.date_created}}</td>
+                                                  <td>{{complain.status}}</td>
+                                                </tr>
+                                              {% endfor %}
+                                            </tbody>
+                                    </table>
+                                    <div class="mb-1 ">
+                                        <small class="text-muted">Want to check status again? 
+                                         <a class=" text-danger font-weight-bold" href="{% url 'complain-status' %}">Check status</a>
+            
+                                        </small>
+                                    </div>
+                                {% endif %}
+                            </div>
+                                
+                    </div>
+                </div>
+            </div>
+         </div>
+    </div>
+
+{% endblock header %} 
+    
+{% block content %}
+ 
+{% endblock content %}
+
+{% block footer %}
+    <!-- Footer -->
+    <footer class="page-footer text-body pt-4 ">
+        <!-- Copyright -->
+        <div class="footer-copyright text-center  black-text bg-white border-top py-3">© 2019 Copyright:
+        <a href="https://ajisaq.com"> ajisaq.com</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+  <!-- Footer -->
+
+{% endblock footer %}
