@@ -58,7 +58,7 @@ class UserComplainListView(ListView):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
         return Post.objects.filter(author=user).order_by('-date_posed')
 
-def AgencyLoginView():
+def agency_login_view():
     model = Agencies
     fields = ['name', 'password', 'state']
     template_name = 'complain_app/agencylogin.html'
