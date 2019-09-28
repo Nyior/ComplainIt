@@ -20,7 +20,6 @@ def home_view(request):
 def complainStatus_view(request):
     query = request.GET.get('password', None)
    
-
     if( request.method == 'GET'):
         complains = Complain.objects.filter(passcode=query)
         paginator = Paginator(complains, 2)

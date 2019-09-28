@@ -101,7 +101,6 @@
                         <a class = "btn btn-sm btn-outline-danger text-body  mb-4  m-0 p-1 mt-2" href="?page={{ num }}">{{ num }}</a>
                     {% endif %}
                 {% endfor %}
-        
                 {% if page_obj.has_next %}
                     <a class = "btn btn-sm btn-outline-danger mb-4  m-0 p-1 mt-2" href="?page={{ page_obj.next_page_number}}">&laquo;</a>
                     <a class = "btn btn-sm btn-outline-danger mb-4  m-0 p-1 mt-2" href="?page={{ page_obj.paginator.num_pages }}">last</a>
